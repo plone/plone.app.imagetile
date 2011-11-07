@@ -1,0 +1,107 @@
+
+First, we set up a browser instance and get Manager privileges::
+
+    >>> from plone.testing.z2 import Browser
+    >>> app = layer['app']
+    >>> browser = Browser(app)
+    >>> browser.handleErrors = False
+    >>> portal = layer['portal']
+    >>> portal_url = portal.absolute_url()
+
+    >>> from plone.app.testing import setRoles
+    >>> from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, TEST_USER_PASSWORD
+    >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_NAME, TEST_USER_PASSWORD,))
+    >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+
+    >>> import transaction
+    >>> transaction.commit() # make the browser see this role
+
+We also keep another testbrowser handy for testing how tiles are rendered if
+you're not logged in::
+
+    >>> unprivileged_browser = Browser(app)
+
+We create a page in the site to use it in tests later::
+
+    >>> browser.open(portal_url + '/createObject?type_name=Document')
+    >>> browser.getControl(name='title').value = 'A simple page'
+    >>> browser.getControl(name='description').value = 'A description'
+    >>> browser.getControl('Save').click()
+    >>> page_url = browser.url
+    >>> page_url
+    'http://nohost/plone/a-simple-page'
+
+Image tile
+-----------
+
+The image tile uses plone.app.mediarepository to allow you to select
+an image or upload a new image. Uploading images is handled clientside within
+the mediarepository picker, this form just processes any selected images.
+
+We first upload some test images to the default repository::
+
+    >>> gif = 'GIF89a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00\x003\x00!\xf9\x04\x01\x00\x00\x01\x00,\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02L\x01\x00;'
+    >>> repo = portal['media-repository']
+    >>> repo
+    <Container at /plone/media-repository>
+    >>> repo.invokeFactory('Image', 'test-image1', title='Test Image 1', image=gif)
+    'test-image1'
+    >>> repo.invokeFactory('Image', 'test-image2', title='Test Image 2', image=gif)
+    'test-image2'
+    >>> repo['test-image1'].getImage().getBlob().open().read() == gif
+    True
+    >>> repo['test-image2'].getImage().getBlob().open().read() == gif
+    True
+    >>> transaction.commit()
+
+We now create an image tile, initially the form is empty::
+
+    >>> browser.open(portal_url + '/@@add-tile/plone.app.imagetile/image-tile')
+    >>> browser.getControl(name='image_id').value
+    ''
+    >>> browser.getControl(name='alt_text').value
+    ''
+    >>> browser.getControl(name='image_size:list').value
+    ['original']
+
+Select an image, give it an alt text and value. Save it::
+
+    >>> '/'.join(repo['test-image1'].getPhysicalPath())
+    '/plone/media-repository/test-image1'
+    >>> browser.getControl(name='image_id').value = '/plone/media-repository/test-image1'
+    >>> browser.getControl(name='alt_text').value = 'Aardvarks!'
+    >>> browser.getControl(name='image_size:list').value = ['thumb']
+    >>> browser.getControl(label='Save').click()
+
+The tile now reflects the image::
+
+    >>> browser.open(portal_url + '/@@plone.app.imagetile/image-tile')
+    >>> browser.contents
+    '...<img src="http://nohost/plone/media-repository/test-image1/@@images/image/thumb" alt="Aardvarks!">...'
+
+If we open the tile again, should have the same values selected::
+
+    >>> browser.open(portal_url + '/@@edit-tile/plone.app.imagetile/image-tile')
+    >>> browser.getControl(name='image_id').value
+    '/plone/media-repository/test-image1'
+    >>> browser.getControl(name='alt_text').value
+    'Aardvarks!'
+    >>> browser.getControl(name='image_size:list').value
+    ['thumb']
+
+Switch the image, tile should update::
+
+    >>> browser.getControl(name='image_id').value = '/plone/media-repository/test-image2'
+    >>> browser.getControl(label='Save').click()
+    >>> browser.open(portal_url + '/@@plone.app.imagetile/image-tile')
+    >>> browser.contents
+    '...<img src="http://nohost/plone/media-repository/test-image2/@@images/image/thumb" alt="Aardvarks!">...'
+
+Finally if tile points at a nonexistent image, the tile should show a reasonable error::
+
+    >>> del repo['test-image2']
+    >>> repo.reindexObject()
+    >>> transaction.commit()
+    >>> browser.open(portal_url + '/@@plone.app.imagetile/image-tile')
+    >>> browser.contents
+    '...<em>Image not found.</em>...'

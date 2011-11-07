@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<registry>
+    <record
+        interface="plone.app.standardtiles.interfaces.IStandardTilesSettings"
+        field="images_repo_path">
+        <value>images</value>
+    </record>
+   <records prefix="plone.app.deco.app_tiles.plone_app_imagetile"
+            interface="plone.app.deco.interfaces.ITile">
+        <value key="name">plone.app.imagetile</value>
+        <value key="label">Image</value>
+        <value key="category">media</value>
+        <value key="tile_type">app</value>
+        <value key="default_value"></value>
+        <value key="read_only">false</value>
+        <value key="settings">true</value>
+        <value key="favorite">false</value>
+        <value key="rich_text">false</value>
+        <value key="weight">10</value>
+    </records>
+</registry>
