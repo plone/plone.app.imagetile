@@ -77,7 +77,7 @@ The tile now reflects the image::
 
     >>> browser.open(portal_url + '/@@plone.app.imagetile/image-tile')
     >>> browser.contents
-    '...<img src="http://nohost/plone/media-repository/test-image1/@@images/image/thumb" alt="Aardvarks!">...'
+    '...<img src="http://nohost/plone/media-repository/test-image1/@@images/image/thumb" alt="Aardvarks!" />...'
 
 If we open the tile again, should have the same values selected::
 
@@ -95,7 +95,7 @@ Switch the image, tile should update::
     >>> browser.getControl(label='Save').click()
     >>> browser.open(portal_url + '/@@plone.app.imagetile/image-tile')
     >>> browser.contents
-    '...<img src="http://nohost/plone/media-repository/test-image2/@@images/image/thumb" alt="Aardvarks!">...'
+    '...<img src="http://nohost/plone/media-repository/test-image2/@@images/image/thumb" alt="Aardvarks!" />...'
 
 Finally if tile points at a nonexistent image, the tile should show a reasonable error::
 
