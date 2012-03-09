@@ -1,8 +1,6 @@
 <metadata>
-  <version>1000</version>
+  <version>1</version>
   <dependencies>
-    <dependency>profile-plone.app.tiles:default</dependency>
-    <dependency>profile-plone.formwidget.querystring:default</dependency>
-    <dependency>profile-plone.app.mediarepository:default</dependency>
+    <dependency>profile-plone.app.deco:default</dependency>
   </dependencies>
 </metadata>

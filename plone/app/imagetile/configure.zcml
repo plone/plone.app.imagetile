@@ -1,46 +1,34 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="plone">
 
-    <!-- Include our dependencies -->
-    <includeDependencies package="." />
+    <include package="plone.tiles" />
+    <include package="plone.app.deco" />
 
-    <grok:grok package="." />
+    <browser:resourceDirectory
+        name="plone.app.imagetile"
+        directory="static"
+        />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Image tile"
+        description="A image tile which can be used by Deco and Blocks"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
     <plone:tile
         name="plone.app.imagetile"
-        title="Image"
-        description='A tile which displays an image'
-        add_permission="zope2.View"
-        class=".image.ImageTile"
+        title="Image tile"
+        description="A tile which adds image"
+        add_permission="zope.Public"
+        class=".tile.ImageTile"
         for="*"
-        permission="zope.Public"
-        schema=".image.IImageTile"
-        />
-
-    <utility
-        component=".image.availablePloneAppImagingScalesVocabulary"
-        name="Available Images Scales"
-        />
-
-    <z3c:widgetTemplate
-        mode="input"
-        widget="plone.app.imagetile.image.IImagePreviewSelectWidget"
-        layer="z3c.form.interfaces.IFormLayer"
-        template="image_preview_select_widget.pt"
-        />
-
-    <!-- Register an extension profile to make the product installable -->
-    <genericsetup:registerProfile
-        name="default"
-        title="plone.app.imagetile"
-        description="A tile which displays a referenced image."
-        directory="profiles/default"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
+        permission="zope2.View"
         />
 
 </configure>

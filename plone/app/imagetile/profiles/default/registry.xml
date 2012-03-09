@@ -1,34 +1,16 @@
 <?xml version="1.0"?>
 <registry>
-   <records prefix="plone.app.deco.app_tiles.plone_app_imagetile"
-            interface="plone.app.deco.interfaces.ITile">
-        <value key="name">plone.app.imagetile</value>
-        <value key="label">Image</value>
-        <value key="category">media</value>
-        <value key="tile_type">app</value>
-        <value key="default_value"></value>
-        <value key="read_only">false</value>
-        <value key="settings">true</value>
-        <value key="favorite">false</value>
-        <value key="rich_text">false</value>
-        <value key="weight">10</value>
-    </records>
-    <record name="plone.app.deco.app_tiles.plone_app_imagetile.available_actions">
-        <field type="plone.registry.field.List">
-            <title>Available actions for the Image tile</title>
-            <value_type type="plone.registry.field.TextLine" />
-        </field>
-        <value>
-             <element>blur</element>
-             <element>tile-align-block</element>
-             <element>tile-align-right</element>
-             <element>tile-align-left</element>
+
+    <record name="plone.app.deco.tiles">
+        <value purge="false">
+            <element>plone.app.deco.tile_image</element>
         </value>
     </record>
-    <!--record
-        interface="plone.app.standardtiles.interfaces.IStandardTilesSettings"
-        field="images_repo_path">
-        <value>images</value>
-    </record-->
+    <records prefix="plone.app.deco.tile_image"
+             interface="plone.app.deco.interfaces.ITile">
+        <value key="name">image</value>
+        <value key="label">Image</value>
+        <value key="icon">++resource++plone.app.imagetile/icon.png</value>
+    </records>
 
 </registry>
