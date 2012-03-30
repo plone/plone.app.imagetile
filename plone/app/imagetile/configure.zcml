@@ -13,22 +13,24 @@
         directory="static"
         />
 
+    <plone:tile
+        name="plone.app.imagetile"
+        title="Image tile"
+        description="A tile which adds image"
+        permission="zope2.View"
+        add_permission="plone.ModifyDecoLayout"
+        class=".tile.ImageTile"
+        schema=".tile.IImageTile"
+        template="tile.pt"
+        for="*"
+        />
+
     <genericsetup:registerProfile
         name="default"
         title="Image tile"
         description="A image tile which can be used by Deco and Blocks"
         directory="profiles/default"
         provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <plone:tile
-        name="plone.app.imagetile"
-        title="Image tile"
-        description="A tile which adds image"
-        add_permission="zope.Public"
-        class=".tile.ImageTile"
-        for="*"
-        permission="zope2.View"
         />
 
 </configure>

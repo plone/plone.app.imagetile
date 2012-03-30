@@ -1,4 +1,15 @@
-from plone.tiles import PersistentTile
+from zope.schema import TextLine
+from zope.interface import Interface
+from zope.i18nmessageid import MessageFactory
+from plone.tiles.tile import PersistentTile
+
+
+_ = MessageFactory('plone')
+
+
+class IImageTile(Interface):
+
+    external_url = TextLine(title=_('External Image URL'))
 
 
 class ImageTile(PersistentTile):
