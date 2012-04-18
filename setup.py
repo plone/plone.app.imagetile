@@ -29,6 +29,8 @@ setup(
         'setuptools',
         'plone.tiles',
         'plone.app.deco',
+        'plone.namedfile[blobs]',
+        'plone.formwidget.namedfile',
         ],
     tests_require=tests_require,
     extras_require=dict(test=tests_require),

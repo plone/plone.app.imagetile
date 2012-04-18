@@ -3,12 +3,16 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   xml:lang="en" lang="en" i18n:domain="plone">
 
-<body>
+<body tal:define="image_url view/image_url;
+                  image_title options/title|nothing;
+                  image_description options/description|nothing;">
 
-  <img tal:condition="exists:options/image_url"
-       tal:attributes="src string:${options/image_url};
-                       alt options/alt_text" />
-  <em tal:condition="not:exists:options/image_url">Image not found.</em>
+  <div class="tile-image">
+    <img tal:condition="image_url"
+         tal:attributes="src image_url; alt image_title;" />
+    <h3 tal:condition="image_title" tal:content="image_title" />
+    <p tal:condition="image_description" tal:content="image_description" />
+  </div>
 
 </body>
 </html>

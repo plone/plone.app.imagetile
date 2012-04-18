@@ -13,6 +13,26 @@
         directory="static"
         />
 
+    <browser:page
+        name="downloadimage-tile"
+        for="zope.annotation.interfaces.IAnnotatable"
+        permission="zope2.View"
+        class=".tile.DownloadImageTile"
+        />
+    <adapter
+        for="zope.annotation.interfaces.IAnnotatable
+             zope.publisher.interfaces.browser.IDefaultBrowserLayer
+             plone.tiles.interfaces.ITileType"
+        provides=".tile.IDownloadImageTileView"
+        factory=".tile.DownloadImageTileView"
+        />
+    <class class=".tile.DownloadImageTile">
+        <require
+            permission="zope2.View"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
     <plone:tile
         name="plone.app.imagetile"
         title="Image tile"
