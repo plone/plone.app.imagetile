@@ -1,10 +1,12 @@
 // Image Tile
+// ==========
 //
 // Author: Rok Garbas
 // Contact: rok@garbas.si
 // Version: 1.0
 // Depends:
-//    - https://github.com/plone/plone.app.tiles/blob/master/plone/app/tiles/resources/src/plone.tile.js
+//    ++resource++plone.app.jquery.js
+//    ++resource++plone.app.tiles/src/plone.tiletype.js
 // Description: 
 // License:
 //
@@ -36,6 +38,6 @@
 // # Register Image Tile with Plone
 $.plone = $.plone || {};
 $.plone.tiletype = $.plone.tiletype || {};
-$.plone.tiletype['plone.app.imagetile'] = new $.plone.tile.TileType({});
+$.plone.tiletype.register('plone.app.imagetile', new $.plone.tiletype.TileType({}));
 
 }(jQuery));
