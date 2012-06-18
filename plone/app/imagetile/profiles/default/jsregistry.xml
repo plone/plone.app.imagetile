@@ -3,6 +3,6 @@
 
     <javascript cacheable="False" compression="safe" cookable="False"
         enabled="True" inline="False" bundle="deco"
-        id="++resource++plone.app.imagetile/tile.js" />
+        id="++resource++plone.app.imagetile.js" />
 
 </object>

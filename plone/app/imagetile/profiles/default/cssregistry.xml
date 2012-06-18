@@ -3,6 +3,6 @@
 
     <stylesheet cacheable="False" compression="safe" cookable="True"
         enabled="True" bundle="deco"
-        id="++resource++plone.app.imagetile/tile.css" />
+        id="++resource++plone.app.imagetile.css" />
 
 </object>

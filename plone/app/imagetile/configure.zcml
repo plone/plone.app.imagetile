@@ -5,33 +5,11 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="plone">
 
-    <include package="plone.tiles" />
-    <include package="plone.app.deco" />
+    <include package="plone.app.tiles" />
 
-    <browser:resourceDirectory
-        name="plone.app.imagetile"
-        directory="static"
-        />
-
-    <browser:page
-        name="downloadimage-tile"
-        for="zope.annotation.interfaces.IAnnotatable"
-        permission="zope2.View"
-        class=".tile.DownloadImageTile"
-        />
-    <adapter
-        for="zope.annotation.interfaces.IAnnotatable
-             zope.publisher.interfaces.browser.IDefaultBrowserLayer
-             plone.tiles.interfaces.ITileType"
-        provides=".tile.IDownloadImageTileView"
-        factory=".tile.DownloadImageTileView"
-        />
-    <class class=".tile.DownloadImageTile">
-        <require
-            permission="zope2.View"
-            interface="zope.publisher.interfaces.browser.IBrowserPage"
-            />
-    </class>
+    <browser:resource name="plone.app.imagetile.js" file="tile.js" />
+    <browser:resource name="plone.app.imagetile.css" file="tile.css" />
+    <browser:resource name="plone.app.imagetile.png" file="tile.png" />
 
     <plone:tile
         name="plone.app.imagetile"
