@@ -36,8 +36,6 @@
 "use strict";
 
 // # Register Image Tile with Plone
-$.plone = $.plone || {};
-$.plone.tiletype = $.plone.tiletype || {};
-$.plone.tiletype.register('plone.app.imagetile', new $.plone.tiletype.TileType({}));
+$.plone.tiletype.register('plone.app.imagetile', {});
 
 }(jQuery));
