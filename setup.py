@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-version = '1.0dev'
+version = '1.0'
 tests_require = [
-    'interlude',
+    'plone.testing',
     'plone.app.testing',
-    'plone.app.dexterity',
+    'zope.configuration',
 ]
 
 setup(
