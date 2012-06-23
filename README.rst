@@ -13,7 +13,7 @@ Please report issues in `Deco's issue tracker`_
 Changelog
 =========
 
-1.0 (2012-06-22)
+1.0 (2012-06-23)
 ----------------
 
 - initial release.
