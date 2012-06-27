@@ -3,15 +3,14 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   xml:lang="en" lang="en" i18n:domain="plone">
 
-<body tal:define="image_url view/image_url;
-                  image_title options/title|nothing;
-                  image_description options/description|nothing;">
+<body>
 
-  <div class="tile-image">
-    <img tal:condition="image_url"
-         tal:attributes="src image_url; alt image_title;" />
-    <h3 tal:condition="image_title" tal:content="image_title" />
-    <p tal:condition="image_description" tal:content="image_description" />
+  <div class="tile-image" tal:condition="view/image_src">
+
+    <img tal:attributes="src view/image_src; alt view/data/title|nothing;" />
+    <h3 tal:content="view/data/title|nothing" />
+    <p tal:content="view/data/description|nothing" />
+
   </div>
 
 </body>
