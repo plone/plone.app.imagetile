@@ -4,15 +4,14 @@ from zope.schema import TextLine
 from zope.interface import invariant
 from zope.interface import Invalid
 from zope.i18nmessageid import MessageFactory
-from plone.directives import form
 from plone.tiles.tile import Tile
+from plone.app.tiles.interfaces import ITileBaseSchema
 from Products.CMFCore.utils import getToolByName
-
 
 _ = MessageFactory('plone')
 
 
-class IImageTile(form.Schema):
+class IImageTile(ITileBaseSchema):
 
     url = URI(
         title=_('External Image URL'),
