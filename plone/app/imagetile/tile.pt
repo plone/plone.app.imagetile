@@ -7,12 +7,16 @@
 
   <metal:tile fill-slot="content">
 
-    <div class="tile-image" tal:condition="view/image_src">
-
-      <img tal:attributes="src view/image_src; alt view/data/title|nothing;" />
+    <div class="tile-image"
+      tal:define="scales view/@@images;
+                  thumbnail python: scales.scale('picture', scale='mini');"
+      tal:condition="thumbnail">
+      <img class="image-left"
+           tal:attributes="src thumbnail/url;
+                           width thumbnail/width;
+                           height thumbnail/height" />
       <h3 tal:content="view/data/title|nothing" />
       <p tal:content="view/data/description|nothing" />
-
     </div>
 
   </metal:tile>

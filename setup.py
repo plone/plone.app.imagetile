@@ -32,6 +32,7 @@ setup(
         'plone.directives.form',
         'plone.tiles',
         'plone.app.tiles',
+        'plone.namedfile',
         ],
     tests_require=tests_require,
     extras_require=dict(test=tests_require),
