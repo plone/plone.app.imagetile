@@ -1,7 +1,5 @@
 from zope.schema import Text
 from zope.schema import TextLine
-from zope.interface import invariant
-from zope.interface import Invalid
 from zope.i18nmessageid import MessageFactory
 from plone.tiles.tile import PersistentTile
 from plone.app.tiles.interfaces import ITileBaseSchema
