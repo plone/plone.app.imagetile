@@ -8,8 +8,9 @@ import interlude
 
 optionflags = (doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE)
 testfiles = [
-    '../image.txt',
+    '../tile.txt',
 ]
+
 
 def test_suite():
     suite = unittest.TestSuite()
