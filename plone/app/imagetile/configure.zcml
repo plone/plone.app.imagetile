@@ -15,7 +15,7 @@
         description="A tile which adds image"
         icon="++resource++plone.app.imagetile.png"
         permission="zope2.View"
-        add_permission="plone.ModifyDecoLayout"
+        add_permission="plone.app.tiles.AddTile"
         class=".tile.ImageTile"
         schema=".tile.IImageTile"
         template="tile.pt"
