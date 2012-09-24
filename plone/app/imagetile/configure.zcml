@@ -7,14 +7,13 @@
 
     <include package="plone.app.tiles" />
 
-    <browser:resource name="plone.app.imagetile.js" file="tile.js" />
-    <browser:resource name="plone.app.imagetile.css" file="tile.css" />
     <browser:resource name="plone.app.imagetile.png" file="tile.png" />
 
     <plone:tile
         name="plone.app.imagetile"
         title="Image tile"
         description="A tile which adds image"
+        icon="++resource++plone.app.imagetile.png"
         permission="zope2.View"
         add_permission="plone.ModifyDecoLayout"
         class=".tile.ImageTile"
