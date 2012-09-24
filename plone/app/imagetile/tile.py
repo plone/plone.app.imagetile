@@ -1,6 +1,7 @@
 from zope.schema import Text
 from zope.schema import TextLine
 from zope.i18nmessageid import MessageFactory
+from plone.autoform import directives as form
 from plone.tiles.tile import PersistentTile
 from plone.app.tiles.interfaces import ITileBaseSchema
 
@@ -11,12 +12,11 @@ _ = MessageFactory('plone')
 
 class IImageTile(ITileBaseSchema):
 
+    form.widget(picture='plone.app.imagetile.widget.ImageTileNamedImageFieldWidget')
     picture = NamedImage(
         title=_('Select an image'),
         required=True,
         )
-
-    # -- rest --
 
     title = TextLine(
         title=_('Image title.'),

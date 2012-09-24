@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
@@ -10,6 +11,28 @@
     <browser:resource name="plone.app.imagetile.js" file="tile.js" />
     <browser:resource name="plone.app.imagetile.css" file="tile.css" />
     <browser:resource name="plone.app.imagetile.png" file="tile.png" />
+
+
+    <class class=".widget.ImageTileNamedImageWidget">
+      <require
+          permission="zope.Public"
+          interface="plone.app.imagetile.interfaces.IImageTileNamedImageWidget"
+        />
+    </class>
+
+    <!-- create browserlayer for plone.app.tiles and add comment as to why all tiles register for this layer -->
+
+    <include package="z3c.form" file="meta.zcml" />
+    <include package="z3c.form" />
+    <include package="plone.namedfile" />
+    
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget="plone.app.imagetile.interfaces.IImageTileNamedImageWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="image_widget_edit.pt"
+        />
 
     <plone:tile
         name="plone.app.imagetile"

@@ -33,6 +33,7 @@ setup(
         'plone.tiles',
         'plone.app.tiles',
         'plone.namedfile',
+        'plone.formwidget.namedfile',
         ],
     tests_require=tests_require,
     extras_require=dict(test=tests_require),
