@@ -51,7 +51,7 @@
             class="noborder"
             tal:attributes="name string:${view/name}.action;
                             id string:${view/id}-nochange;
-                            onclick string:document.getElementById('${view/id}-input').disabled=true;
+                            onclick string:$('#${view/id}-input').attr('disabled', true);
                             checked python:(action == 'nochange') and 'checked' or None;"
             />
         <label
@@ -64,7 +64,7 @@
                 class="noborder"
                 tal:attributes="name string:${view/name}.action;
                                 id string:${view/id}-remove;
-                                onclick string:document.getElementById('${view/id}-input').disabled=true;
+                                onclick string:$('#${view/id}-input').attr('disabled', true);
                                 checked python:action== 'remove' and 'checked' or None;"
                 />
             <label
@@ -77,7 +77,7 @@
             class="noborder"
             tal:attributes="name string:${view/name}.action;
                             id string:${view/id}-replace;
-                            onclick string:document.getElementById('${view/id}-input').disabled=false;
+                            onclick string:$('#${view/id}-input').attr('disabled', false);
                             checked python:action == 'replace' and 'checked' or None;" />
         <label
             tal:attributes="for string:${view/id}-replace" i18n:translate="image_replace">Replace with new image</label>
@@ -92,8 +92,7 @@
                             maxlength view/maxlength;"
             />
         <script tal:condition="python:allow_nochange and action != 'replace'" type="text/javascript"
-            tal:content="string:document.getElementById('${view/id}-input').disabled=true;">
+          tal:content="string:$('#${view/id}-input').attr('disabled', true);">
         </script>
     </div>
 </span>
-

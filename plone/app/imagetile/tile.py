@@ -12,7 +12,7 @@ _ = MessageFactory('plone')
 
 class IImageTile(ITileBaseSchema):
 
-    form.widget(picture='plone.app.imagetile.widget.ImageTileNamedImageFieldWidget')
+    form.widget(picture='plone.app.imagetile.imagewidget.ImageFieldWidget')
     picture = NamedImage(
         title=_('Select an image'),
         required=True,

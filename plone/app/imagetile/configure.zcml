@@ -6,30 +6,25 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="plone">
 
+    <include package="z3c.form" file="meta.zcml" />
+    <include package="z3c.form" />
+    <include package="plone.namedfile" />
     <include package="plone.app.tiles" />
 
     <browser:resource name="plone.app.imagetile.png" file="tile.png" />
 
-
-    <class class=".widget.ImageTileNamedImageWidget">
+    <class class=".imagewidget.ImageWidget">
       <require
           permission="zope.Public"
-          interface="plone.app.imagetile.interfaces.IImageTileNamedImageWidget"
+          interface="plone.app.imagetile.interfaces.IImageWidget"
         />
     </class>
 
-    <!-- create browserlayer for plone.app.tiles and add comment as to why all tiles register for this layer -->
-
-    <include package="z3c.form" file="meta.zcml" />
-    <include package="z3c.form" />
-    <include package="plone.namedfile" />
-    
-
     <z3c:widgetTemplate
         mode="input"
-        widget="plone.app.imagetile.interfaces.IImageTileNamedImageWidget"
-        layer="z3c.form.interfaces.IFormLayer"
-        template="image_widget_edit.pt"
+        widget="plone.app.imagetile.interfaces.IImageWidget"
+        layer="plone.app.tiles.interfaces.ITilesFormLayer"
+        template="imagewidget_input.pt"
         />
 
     <plone:tile
