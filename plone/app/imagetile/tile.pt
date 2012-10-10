@@ -11,8 +11,7 @@
       tal:define="scales view/@@images;
                   thumbnail python: scales.scale('picture', scale='mini');"
       tal:condition="thumbnail">
-      <img class="image-left"
-           tal:attributes="src thumbnail/url;
+      <img tal:attributes="src thumbnail/url;
                            width thumbnail/width;
                            height thumbnail/height" />
       <h3 tal:content="view/data/title|nothing" />
